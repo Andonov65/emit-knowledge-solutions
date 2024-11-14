@@ -1,0 +1,59 @@
+{
+  "fields": [
+    {
+      "id": "question-for-name",
+      "label": "Do you want to write your name?",
+      "type": "checkbox",
+      "validationRules": {
+        "required": true
+      }
+    },
+    {
+      "id": "name",
+      "label": "Name",
+      "type": "text",
+      "validationRules": {
+        "required": true
+      },
+      "conditional": {
+        "field": "question-for-name",
+        "value": true
+      }
+    },
+    {
+      "id": "age",
+      "label": "Age",
+      "type": "number",
+      "validationRules": {
+        "required": true,
+        "min": 18
+      }
+    },
+    {
+      "id": "isStudent",
+      "label": "Are you a student?",
+      "type": "checkbox"
+    },
+    {
+      "id": "schoolName",
+      "label": "School Name",
+      "type": "text",
+      "validationRules": {
+        "required": true
+      },
+      "conditional": {
+        "field": "isStudent",
+        "value": true
+      }
+    },
+    {
+      "id": "gender",
+      "label": "Gender",
+      "type": "dropdown",
+      "options": ["Male", "Female", "Other"],
+      "validationRules": {
+        "required": true
+      }
+    }
+  ]
+}
