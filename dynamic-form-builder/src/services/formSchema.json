@@ -32,7 +32,10 @@
     {
       "id": "isStudent",
       "label": "Are you a student?",
-      "type": "checkbox"
+      "type": "checkbox",
+      "validationRules": {
+        "required": true
+      }
     },
     {
       "id": "schoolName",
