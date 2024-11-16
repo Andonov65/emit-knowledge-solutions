@@ -5,10 +5,7 @@
     <TaskFilters />
 
     <ul>
-      <li
-        v-for="task in state.filteredAndSortedTasks"
-        :key="task.id"
-      >
+      <li v-for="task in state.filteredAndSortedTasks" :key="task.id">
         <TaskCard :task="task" />
       </li>
     </ul>
@@ -20,10 +17,10 @@ import TaskForm from '@/components/TaskForm.vue'
 import { useTasksStore } from '@/composable/useTasksStore'
 import TaskFilters from '@/components/TaskFilters.vue'
 import TaskCard from '@/components/TaskCard.vue'
-import {storeToRefs} from "pinia";
+import { storeToRefs } from 'pinia'
 
 const pageStore = useTasksStore()
-const {state} = storeToRefs(pageStore)
+const { state } = storeToRefs(pageStore)
 </script>
 
 <style scoped></style>

@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { useTasksStore } from '@/composable/useTasksStore'
-import {storeToRefs} from "pinia";
+import { storeToRefs } from 'pinia'
 
 const pageStore = useTasksStore()
 const { state } = storeToRefs(pageStore)

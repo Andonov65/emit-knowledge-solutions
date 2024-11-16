@@ -1,6 +1,6 @@
-import {ref, computed, watch, reactive} from 'vue'
+import { ref, computed, watch, reactive } from 'vue'
 import Task, { type Priority } from '../models/Task'
-import {defineStore} from "pinia";
+import { defineStore } from 'pinia'
 
 export const useTasksStore = defineStore('tasks-store', () => {
   const form = ref({
@@ -73,13 +73,14 @@ export const useTasksStore = defineStore('tasks-store', () => {
     return filteredTasks
   })
 
-  const state =  ref({
+  const state = ref({
     form,
     tasks,
     filterBy,
     sortBy,
     filteredAndSortedTasks,
-    errorMessage})
+    errorMessage,
+  })
 
   const actions = reactive({
     addTask,
@@ -87,5 +88,5 @@ export const useTasksStore = defineStore('tasks-store', () => {
     toggleTaskCompletion,
   })
 
-  return {state, actions}
+  return { state, actions }
 })

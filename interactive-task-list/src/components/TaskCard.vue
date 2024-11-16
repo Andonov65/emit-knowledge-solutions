@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col md:flex-row justify-between card p-4 rounded-md shadow-sm m-3 bg-gray-200">
+  <div
+    class="flex flex-col md:flex-row justify-between card p-4 rounded-md shadow-sm m-3 bg-gray-200"
+  >
     <div :class="{ 'line-through': task.completed }">
       <h3 class="font-bold text-lg">{{ task.title }} ({{ task.priority }})</h3>
       <p class="text-gray-500">{{ task.description }}</p>
@@ -9,14 +11,14 @@
       >
     </div>
     <div class="flex flex-col items-end gap-3">
-     <div>
-       <button
-         @click="actions.deleteTask(task.id)"
-         class="bg-red-600 text-white rounded-md px-3 py-1 hover:bg-red-400"
-       >
-         Delete
-       </button>
-     </div>
+      <div>
+        <button
+          @click="actions.deleteTask(task.id)"
+          class="bg-red-600 text-white rounded-md px-3 py-1 hover:bg-red-400"
+        >
+          Delete
+        </button>
+      </div>
       <div>
         <button
           @click="actions.toggleTaskCompletion(task.id)"
