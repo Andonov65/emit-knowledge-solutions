@@ -3,7 +3,11 @@
     <div class="flex flex-col md:flex-row justify-between items-center mb-2">
       <h1 class="text-xl font-bold mb-4">{{ post?.title }}</h1>
       <div v-if="post?.url">
-        <a :href="post.url" target="_blank" class="bg-blue-700 text-sm text-white rounded-md px-2 py-1 hover:bg-blue-500 whitespace-nowrap">
+        <a
+          :href="post.url"
+          target="_blank"
+          class="bg-blue-700 text-sm text-white rounded-md px-2 py-1 hover:bg-blue-500 whitespace-nowrap"
+        >
           Visit Original Link
         </a>
       </div>
@@ -17,16 +21,20 @@
         :key="comment.id"
         class="p-2 border-b-2 border-gray-300"
       >
-        <p v-html="comment.text" class="p-2 break-words" :class="{'bg-indigo-100 rounded-md' : index % 2 === 0}"></p>
+        <p
+          v-html="comment.text"
+          class="p-2 break-words"
+          :class="{ 'bg-indigo-100 rounded-md': index % 2 === 0 }"
+        ></p>
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue"
-import { useRoute } from "vue-router"
-import HNService from "@/services/HnService"
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import HNService from '@/services/HnService'
 
 const route = useRoute()
 const post = ref<any>(null)
@@ -38,7 +46,7 @@ const fetchPostDetails = async () => {
 
   if (post.value.kids) {
     const commentDetails = await Promise.all(
-      post.value.kids.map((id: number) => HNService.fetchItemDetails(id))
+      post.value.kids.map((id: number) => HNService.fetchItemDetails(id)),
     )
     comments.value = commentDetails
   }
@@ -60,7 +68,7 @@ onMounted(fetchPostDetails)
 }
 
 ::v-deep(code) {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   color: #4b5563;
 }
 </style>

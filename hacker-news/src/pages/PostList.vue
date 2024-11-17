@@ -24,16 +24,12 @@
     </div>
 
     <div class="grid grid-cols-1 gap-4">
-      <div
-        v-for="post in visiblePosts"
-        :key="post.id"
-        class="p-4 border rounded shadow-lg"
-      >
+      <div v-for="post in visiblePosts" :key="post.id" class="p-4 border rounded shadow-lg">
         <h2 class="font-bold text-lg">{{ post.title }}</h2>
         <p>Score: {{ post.score }} | Comments: {{ post.descendants }}</p>
         <div class="flex justify-end">
           <router-link
-            :to="{ name: 'PostDetails', params: { id: post.id }}"
+            :to="{ name: 'PostDetails', params: { id: post.id } }"
             class="text-white mt-2 px-2 py-1 rounded-md bg-indigo-800 hover:bg-indigo-600"
           >
             View Details
@@ -42,18 +38,16 @@
       </div>
     </div>
 
-    <div v-if="loadingMore" class="text-center mt-4">
-      Loading more posts...
-    </div>
+    <div v-if="loadingMore" class="text-center mt-4">Loading more posts...</div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue"
-import HNService from "@/services/HnService"
+import { ref, onMounted } from 'vue'
+import HNService from '@/services/HnService'
 import { useRouter } from 'vue-router'
 
-const searchQuery = ref("")
+const searchQuery = ref('')
 const searchResults = ref<any[]>([])
 const isSearching = ref(false)
 
@@ -67,12 +61,12 @@ const fetchPosts = async () => {
   try {
     const topStoryIds = await HNService.fetchTopStories()
     const storyDetails = await Promise.all(
-      topStoryIds.slice(0, 30).map((id) => HNService.fetchItemDetails(id))
+      topStoryIds.slice(0, 30).map((id) => HNService.fetchItemDetails(id)),
     )
-    posts.value = storyDetails.filter((story) => story.type === "story")
+    posts.value = storyDetails.filter((story) => story.type === 'story')
     visiblePosts.value = posts.value.slice(0, 10)
   } catch (error) {
-    console.error("Error fetching posts:", error)
+    console.error('Error fetching posts:', error)
   }
 }
 
@@ -93,18 +87,15 @@ const searchPosts = async () => {
 }
 
 const selectSearchResult = (result: any) => {
-  searchQuery.value = ""
+  searchQuery.value = ''
   searchResults.value = []
-  router.push({ name: "PostDetails", params: { id: result.objectID } })
+  router.push({ name: 'PostDetails', params: { id: result.objectID } })
 }
 
 onMounted(fetchPosts)
 
-window.addEventListener("scroll", () => {
-  if (
-    window.innerHeight + window.scrollY >=
-    document.documentElement.scrollHeight - 50
-  ) {
+window.addEventListener('scroll', () => {
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
     loadMorePosts()
   }
 })
