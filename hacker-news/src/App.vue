@@ -3,26 +3,18 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
- <div class="body-class">
+ <div class="my-4">
    <header>
-
-     <div>
-       Yeyy
-
-       <nav>
-         <RouterLink to="/">Home</RouterLink>
-         <RouterLink to="/about">About</RouterLink>
+       <nav class="flex justify-center bg-zinc-700 py-3">
+         <RouterLink class="bg-white text-zinc-700 font-bold rounded-md px-2 py-1 hover:bg-zinc-300" to="/">Posts</RouterLink>
        </nav>
-     </div>
    </header>
 
-   <RouterView />
+   <main class="md:container mx-auto ">
+     <RouterView />
+   </main>
  </div>
 </template>
 
 <style scoped>
-.body-class {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-}
 </style>
