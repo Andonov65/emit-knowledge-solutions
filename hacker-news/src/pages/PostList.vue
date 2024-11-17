@@ -26,6 +26,12 @@
     <div class="grid grid-cols-1 gap-4">
       <div v-for="post in visiblePosts" :key="post.id" class="p-4 border rounded shadow-lg">
         <h2 class="font-bold text-lg">{{ post.title }}</h2>
+        <div class="text-sm text-gray-400">
+          {{ post.by }}
+          <br/>
+          {{ new Date(post.time).toLocaleDateString() }}
+          {{ new Date(post.time).toLocaleTimeString() }}
+        </div>
         <p>Score: {{ post.score }} | Comments: {{ post.descendants }}</p>
         <div class="flex justify-end">
           <router-link
@@ -61,7 +67,7 @@ const fetchPosts = async () => {
   try {
     const topStoryIds = await HNService.fetchTopStories()
     const storyDetails = await Promise.all(
-      topStoryIds.slice(0, 30).map((id) => HNService.fetchItemDetails(id)),
+      topStoryIds.slice(0, 30).map((id) => HNService.fetchItemDetails(id))
     )
     posts.value = storyDetails.filter((story) => story.type === 'story')
     visiblePosts.value = posts.value.slice(0, 10)
